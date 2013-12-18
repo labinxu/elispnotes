@@ -1,0 +1,39 @@
+(message "hello lisp")
+;;*Text
+;;**Near Point
+(string (char-after (- (point) 3)));")"
+(string (char-before (- (point) 3)));"3"
+
+(string (following-char))
+(string (preceding-char))
+
+(eobp);; is end of buffer 
+(bobp);; Is begin of buffer
+(bolp) ;; Is begin of line 
+(eolp) ;; Is end of line
+
+;;+Point
+(point)
+(point-min)
+(point-max)
+(buffer-end 0);This function returns (point-max) if flag is greater than 0, (point-min) otherwise. The argument flag must be a number.
+
+(buffer-size)
+
+;;**Buffer Contents
+;;---------- Buffer: foo ----------
+;;      Gentlemen may cry ``Pea-!-ce! Peace!,''
+;;      but there is no peace.
+;;---------- Buffer: foo ----------
+(buffer-string)
+(current-word)
+(defun my-thing-at-point-word()
+  (interactive)
+  (thing-at-point 'word))
+(defun my-thing-at-point-line()
+  (interactive)
+  (thing-at-point 'line))
+
+
+
+
