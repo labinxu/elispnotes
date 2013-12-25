@@ -23,7 +23,7 @@
 ;;**Buffer Contents
 ;;---------- Buffer: foo ----------
 ;;      Gentlemen may cry ``Pea-!-ce! Peace!,''
-;;      but there is no peace.
+;;      but there is no peace	.		
 ;;---------- Buffer: foo ----------
 (buffer-string)
 (current-word)
@@ -34,6 +34,9 @@
   (interactive)
   (thing-at-point 'line))
 
+;;*inserting text 32.4
+(defun my-insert(p)
+  (interactive "P");; "P" "D" "F" "*p" "e"
+  (insert p))
 
-
-
+(delete-horizontal-space)
