@@ -29,6 +29,16 @@
 (global-set-key "\C-j" 'align) 
 (setq track-eol t);; 当光标在行尾上下移动的时候，始终保持在行尾。 
 
+;; session
+(require 'saveplace)
+(setq-default save-place t)
+(when (fboundp 'savehist-mode)
+  (savehist-mode t))
+(setq recentf-menu-open-all-flag t
+      recentf-max-saved-items 100
+      recentf-max-menu-items 30)
+(recentf-mode t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; edit ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
