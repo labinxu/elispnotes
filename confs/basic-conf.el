@@ -1,6 +1,9 @@
 ;;basic configure
 (setq user-full-name "Labin.xu") 
 (setq user-mail-address "flowinair@gmail.com") 
+;; make the title infomation more useful
+(setq frame-title-format
+      (list "Emacs " emacs-version "@" system-name " - " '(buffer-file-name "%f" "%b")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;setq
 (setq-default cursor-type 'bar)
@@ -8,10 +11,30 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq show-paren-style 'parenthesis)
 
+;; show clock at statusline
+(display-time-mode t)
+(setq display-time-24hr-format t)
+(setq display-time-day-and-date t)
+(setq display-time-use-mail-icon t)
+(setq display-time-interval 10)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; edit ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq default-fill-column 80)
+
+;; setup up a big kill-ring, so i will never miss anything:-)
+(setq kill-ring-max 100)
+;; we need to paste something from another program, but sometimes we
+;; do real paste after some kill action, that will erase the
+;; clipboard,so we need to save it to kill ring, here is the setting
+;; used to control that
+(setq save-interprogram-paste-before-kill t)
+
+(set-language-environment 'UTF-8)
+
+(setq default-fill-column 110)
 ;; tab and comments
 (setq-default tab-width 4)
+;; not use tab, use space to indent
+(setq-default indent-tabs-mode nil)
 (setq-default comment-column 40)        ; [C-x ;] (set-comment-column)
 (setq mouse-drag-copy-region nil);;取消鼠标选择即复制
 (setq x-select-enable-clipboard t);;支持emacs和外部程序的粘贴
@@ -40,14 +63,6 @@
 (recentf-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; edit ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;; frame ;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(global-set-key [f11] 'delete-other-windows);F11 关闭其它窗口 
-(global-set-key (kbd "C-|") 'other-window);窗口间跳转
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;; frame ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; modes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -132,11 +147,37 @@
 (add-hook 'c++-mode-hook 'my-common-mode-auto-pair)
 (add-hook 'lisp-mode-hook 'my-common-mode-auto-pair)
 (add-hook 'emacs-lisp-mode-hook 'my-common-mode-auto-pair)
+
+
+;; quick open internal shell
+(defun kid-switch-to-shell ()
+  (interactive)
+  (when (null (cdr (window-list)))
+    (split-window-vertically))
+  (let ((file buffer-file-name))
+    (other-window 1)
+    (shell)
+    (when file
+      (end-of-buffer)
+      (when (looking-back shell-prompt-pattern)
+        (insert "cd " (file-name-directory file))
+        (call-interactively 'comint-send-input)))))
+(global-set-key (kbd "<C-S-f6>") 'kid-switch-to-shell)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "<M-up>") 'move-line-up)
 (global-set-key (kbd "<M-down>") 'move-line-down)
+;; frame ;;;;;
+;; some useful key binding
+(global-set-key (kbd "M-1") 'delete-other-windows)
+(global-set-key (kbd "M-0") 'delete-window)
+(global-set-key (kbd "C-|") 'other-window);窗口间跳转
+;;;buffer
+(global-set-key (kbd "C-<") 'next-buffer);转到下一个buffer 
+(global-set-key (kbd "C->") 'previous-buffer);转到上一个buffer
+ 
+(global-set-key (kbd "M-g") 'goto-line);;设置M-g为goto-line 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'buildin-cedet-conf)
