@@ -178,6 +178,11 @@
 (global-set-key (kbd "C->") 'previous-buffer);转到上一个buffer
  
 (global-set-key (kbd "M-g") 'goto-line);;设置M-g为goto-line 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+(global-set-key (kbd "C-c C-m") 'execute-extended-command)
+(global-set-key (kbd "C-w") 'backward-kill-word)
+(global-set-key (kbd "C-x w") 'kill-word)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'buildin-cedet-conf)
