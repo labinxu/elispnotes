@@ -3,4 +3,4 @@
 (require 'basic-conf)
 (require 'yasnippet-conf)
 (require 'autocomplete-conf)
-;;(require 'color-theme-conf)
+(require 'color-theme-conf)

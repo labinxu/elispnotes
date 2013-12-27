@@ -5,3 +5,5 @@ semanticdb/
 eshell/
 semanticdb/
 history
+plugins/yasnippet/
+plugins/auto-complete/

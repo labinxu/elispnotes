@@ -1,11 +1,10 @@
 
 ;; All patches welcome
 (add-to-list 'load-path "~/.emacs.d/plugins/color-theme-6.6.0")
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-blackboard)))
+(add-to-list 'load-path "~/.emacs.d/plugins/emacs-color-theme-solarized")
+
+(require 'color-theme-solarized)
+(load-theme 'solarized-dark t)
      
 (provide 'color-theme-conf)
      
