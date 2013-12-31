@@ -1,0 +1,5 @@
+(:name ergoemacs-mode
+:auto-generated t
+:type emacswiki
+:description "Emacs mode based on common modern software interface and ergonomics."
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/ergoemacs-mode.el")

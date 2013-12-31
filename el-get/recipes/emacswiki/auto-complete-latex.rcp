@@ -1,0 +1,5 @@
+(:name auto-complete-latex
+:auto-generated t
+:type emacswiki
+:description "A LaTeX extention for auto-complete-mode"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/auto-complete-latex.el")

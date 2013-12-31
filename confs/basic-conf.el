@@ -184,6 +184,4 @@
 (global-set-key (kbd "C-w") 'backward-kill-word)
 (global-set-key (kbd "C-x w") 'kill-word)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'buildin-cedet-conf)
 (provide 'basic-conf)

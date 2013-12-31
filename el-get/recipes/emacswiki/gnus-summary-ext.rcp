@@ -1,0 +1,5 @@
+(:name gnus-summary-ext
+:auto-generated t
+:type emacswiki
+:description "Extra limit and process mark commands for the gnus summary buffer"
+:website "https://raw.github.com/emacsmirror/emacswiki.org/master/gnus-summary-ext.el")

@@ -19,11 +19,11 @@
     (setq ede-locate-setup-options '(ede-locate-global ede-locate-base)))
   ;; (setq semantic-c-obey-conditional-section-parsing-flag nil) ; ignore #if
 
-  (unless (executable-find "python")
-    (remove-hook 'python-mode-hook 'wisent-python-default-setup)
-    (setq semantic-new-buffer-setup-functions
-          (delete (assq 'python-mode semantic-new-buffer-setup-functions)
-                  semantic-new-buffer-setup-functions)))
+;; (unless (executable-find "python")
+;;   (remove-hook 'python-mode-hook 'wisent-python-default-setup)
+;;   (setq semantic-new-buffer-setup-functions
+;;         (delete (assq 'python-mode semantic-new-buffer-setup-functions)
+;;                 semantic-new-buffer-setup-functions)))
   ;; (add-to-list 'semantic-inhibit-functions
   ;;              (lambda () (cond
   ;;                          ((member major-mode '(Info-mode python-mode))
