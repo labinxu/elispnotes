@@ -3,7 +3,9 @@
 (setq user-mail-address "flowinair@gmail.com") 
 ;; make the title infomation more useful
 (setq frame-title-format
-      (list "Emacs " emacs-version "@" system-name " - " '(buffer-file-name "%f" "%b")))
+      (list "Emacs " emacs-version "@" '(buffer-file-name "%f" "%b")))
+;;close startup message
+(setq inhibit-startup-message t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;setq
 (setq-default cursor-type 'bar)
@@ -31,10 +33,12 @@
 (set-language-environment 'UTF-8)
 
 (setq default-fill-column 110)
-;; tab and comments
-(setq-default tab-width 4)
+
 ;; not use tab, use space to indent
 (setq-default indent-tabs-mode nil)
+;; tab and comments
+(setq-default tab-width 4)
+
 (setq-default comment-column 40)        ; [C-x ;] (set-comment-column)
 (setq mouse-drag-copy-region nil);;取消鼠标选择即复制
 (setq x-select-enable-clipboard t);;支持emacs和外部程序的粘贴
@@ -51,7 +55,10 @@
 (require 'align) 
 (global-set-key "\C-j" 'align) 
 (setq track-eol t);; 当光标在行尾上下移动的时候，始终保持在行尾。 
-
+;;mouse
+;; move mouse when cursor is close to it
+(mouse-avoidance-mode 'animate)
+(setq mouse-wheel-follow-mouse 't)                    ;; scroll window under mouse
 ;; session
 (require 'saveplace)
 (setq-default save-place t)
@@ -71,9 +78,15 @@
 (global-font-lock-mode t)
 ;;(desktop-save-mode 1)
 (auto-save-mode nil);;禁止自动保存
+;;folder the code 
+(setq hs-minor-mode t)
+;;;;高亮当前行
+(require 'hl-line)
+(global-hl-line-mode t)
+
 (transient-mark-mode t);允许临时设置标记 
 ;;;;;;;;;;;;;;;;;;
-
+(winner-mode t)
 ;;ido mode
 (when (fboundp 'ido-mode)
   (ido-mode t)
@@ -163,6 +176,25 @@
         (insert "cd " (file-name-directory file))
         (call-interactively 'comint-send-input)))))
 (global-set-key (kbd "<C-S-f6>") 'kid-switch-to-shell)
+
+(defun copy-current-file-name (&optional prefix)
+  (interactive "p")
+  (cond
+   ((equal prefix 1)
+    (kill-new (buffer-name)))
+   ((equal prefix 4)
+    (kill-new (or (buffer-file-name)
+                  (buffer-name))))))
+(global-set-key (kbd "<M-f5>") 'copy-current-file-name)
+
+;;;;auto complete
+(defun my-indent-or-complete ()
+   (interactive)
+   (if (looking-at "\\>")
+    (hippie-expand nil)
+    (indent-for-tab-command))
+)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -181,7 +213,12 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 (global-set-key (kbd "C-c C-m") 'execute-extended-command)
+;; change C-m and enter
+(global-set-key "\C-m" 'newline-and-indent)
+(global-set-key "\C-j" 'newline )
+
 (global-set-key (kbd "C-w") 'backward-kill-word)
-(global-set-key (kbd "C-x w") 'kill-word)
+;(global-set-key (kbd "C-x") 'kill-word)
+(global-set-key [(control tab)] 'my-indent-or-complete)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (provide 'basic-conf)
