@@ -1,11 +1,11 @@
 (add-to-list 'load-path "~/.emacs.d/confs/")
-
-(require 'basic-conf)
 (require 'yasnippet-conf)
 (require 'autocomplete-conf)
 (require 'color-theme-conf)
 (require 'python_conf)
-(require 'wcy-desktop-settings)
+(require 'site-lisp-conf)
+(require 'tabbar-conf)
+(require 'basic-conf)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

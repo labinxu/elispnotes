@@ -194,7 +194,17 @@
     (hippie-expand nil)
     (indent-for-tab-command))
 )
+;;;
+(defun select-next-window ()
+  "Switch to the next window"
+  (interactive)
+  (select-window (next-window)))
 
+(defun select-previous-window ()
+  "Switch to the previous window"
+  (interactive)
+  (select-window (previous-window)))
+  
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -202,9 +212,7 @@
 (global-set-key (kbd "<M-down>") 'move-line-down)
 ;; frame ;;;;;
 ;; some useful key binding
-(global-set-key (kbd "M-1") 'delete-other-windows)
-(global-set-key (kbd "M-0") 'delete-window)
-(global-set-key (kbd "C-|") 'other-window);窗口间跳转
+
 ;;;buffer
 (global-set-key (kbd "C-<") 'next-buffer);转到下一个buffer 
 (global-set-key (kbd "C->") 'previous-buffer);转到上一个buffer
@@ -220,5 +228,17 @@
 (global-set-key (kbd "C-w") 'backward-kill-word)
 ;(global-set-key (kbd "C-x") 'kill-word)
 (global-set-key [(control tab)] 'my-indent-or-complete)
+;;windows
+(global-set-key [(control shift up)] 'enlarge-window)
+(global-set-key [(control shift down)] 'shrink-window)
+(global-set-key [(control shift left)] 'enlarge-window-horizontally)
+(global-set-key [(control shift right)] 'shrink-window-horizontally)
+;;(global-set-key [(meta right)] 'select-next-window)
+;;(global-set-key [(meta left)]  'select-previous-window)
+(global-set-key (kbd "M-1") 'delete-other-windows)
+(global-set-key (kbd "M-0") 'delete-window)
+(global-set-key (kbd "C-|") 'other-window);窗口间跳转
+;;对放大后的窗口复原需要进入winner-mode,输入winner-undo命令，其快捷键为C-c <left>
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (provide 'basic-conf)
